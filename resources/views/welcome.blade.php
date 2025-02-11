@@ -53,11 +53,18 @@
             }
           }
         }
+        
       </script>
+                    <script>
+                        function goTo(id) {
+                            window.location.href = "/pasar/" + id
+                        }
+                    </script>
                     <div class="swiper-wrapper">
                         @foreach ($pasar as $data)
-                            <div class="swiper-slide event-item d-flex flex-column justify-content-end"
-                                style="background-image: url(/storage/{{ $data->gambar_utama }})">
+                            <div class="swiper-slide event-item d-flex flex-column justify-content-end cursor-pointer"
+                                onclick="goTo({{ $data->id }})"
+                                style="background-image: url(/storage/{{ $data->gambar_utama }});cursor:pointer;">
                                 <h3>{{ $data->nama }}</h3>
                                 <div class="price align-self-start"></div>
                             </div><!-- End Event item -->

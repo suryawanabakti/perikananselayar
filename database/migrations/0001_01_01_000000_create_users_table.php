@@ -18,6 +18,8 @@ return new class extends Migration
             $table->enum('role', ['admin', 'penjual'])->default('admin');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('noktp')->nullable();
+            $table->string('nohp')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

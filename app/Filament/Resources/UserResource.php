@@ -31,6 +31,8 @@ class UserResource extends Resource
             ->schema([
                 Select::make('pasar_id')->options(Pasar::all()->pluck('nama', 'id'))->required(),
                 TextInput::make('name')->required(),
+                TextInput::make('noktp')->required(),
+                TextInput::make('nohp')->required(),
                 TextInput::make('email')->email()->required(),
             ]);
     }

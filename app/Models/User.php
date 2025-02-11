@@ -25,6 +25,8 @@ class User extends Authenticatable
         'name',
         'pasar_id',
         'role',
+        'noktp',
+        'nohp',
         'email',
         'password',
     ];
