@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pasar_id')->nullable()->constrained('pasar')->cascadeOnDelete();
             $table->string('name');
-            $table->enum('role', ['admin', 'penjual'])->default('admin');
+            $table->enum('role', ['admin', 'penjual'])->default('penjual');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('noktp')->nullable();
             $table->string('nohp')->nullable();
             $table->string('password');
+            $table->boolean('is_active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

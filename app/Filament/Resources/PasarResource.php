@@ -39,7 +39,8 @@ class PasarResource extends Resource
                 TextInput::make('nama')->columnSpanFull()->required(),
                 RichEditor::make('deskripsi')->columnSpanFull()->required(),
                 Textarea::make('alamat')->columnSpanFull()->required(),
-                Textarea::make('map')->columnSpanFull(),
+                TextInput::make('latitude')->columnSpan(1)->required()->hidden(),
+                TextInput::make('longitude')->columnSpan(1)->required()->hidden(),
             ]);
     }
 
@@ -47,9 +48,9 @@ class PasarResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama'),
-                TextColumn::make('deskripsi')->html(),
-                TextColumn::make('alamat')->html(),
+                TextColumn::make('nama')->searchable(),
+                TextColumn::make('deskripsi')->html()->searchable()->wrap(),
+                TextColumn::make('alamat')->html()->searchable(),
             ])
             ->filters([
                 //

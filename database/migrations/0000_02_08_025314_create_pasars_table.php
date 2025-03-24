@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->text('alamat');
-            $table->text('map')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }

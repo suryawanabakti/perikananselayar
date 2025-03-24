@@ -23,10 +23,9 @@
                         <div class="row gy-5">
                             @foreach ($products as $product)
                                 <div class="col-lg-4 menu-item">
-                                    <a href="/storage/{{ $product->gambar }}" class="glightbox"><img
-                                            src="/storage/{{ $product->gambar }}" class="menu-img img-fluid"
-                                            alt=""></a>
-                                    <h4>{{ $product->nama }} </h4>
+                                    <a href="/products/{{ $product->id }}"><img src="/storage/{{ $product->gambar }}"
+                                            class="menu-img img-fluid" alt=""></a>
+                                    <h4> <a href="/products/{{ $product->id }}">{{ $product->nama }}</a> </h4>
                                     <p class="ingredients">
                                         {!! $product->deskripsi !!}
                                     </p>

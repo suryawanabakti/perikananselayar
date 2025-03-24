@@ -8,12 +8,14 @@ use App\Models\Pasar;
 use App\Models\User;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,6 +27,8 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $pluralModelLabel = 'Penjual';
     protected static ?string $navigationGroup = 'Master Data';
+    protected static ?string $modelLabel = 'Penjual';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -34,6 +38,10 @@ class UserResource extends Resource
                 TextInput::make('noktp')->required(),
                 TextInput::make('nohp')->required(),
                 TextInput::make('email')->email()->required(),
+                Radio::make('is_active')->options([
+                    0 => "Tidak",
+                    1 => "iya"
+                ])->inline()
             ]);
     }
 
@@ -47,12 +55,17 @@ class UserResource extends Resource
         return $table
             ->query(User::whereNot('role', 'admin'))
             ->columns([
-                TextColumn::make('pasar.nama'),
-                TextColumn::make('name'),
-                TextColumn::make('email'),
+                TextColumn::make('pasar.nama')->searchable(),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('email')->searchable(),
+                TextColumn::make('nohp')->searchable(),
+                TextColumn::make('is_active')->searchable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('is_active')->options([
+                    1 => "Active",
+                    0 => "Not Active"
+                ])
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

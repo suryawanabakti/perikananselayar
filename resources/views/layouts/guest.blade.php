@@ -4,13 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Selayar</title>
+    <title>Perikanan Selayar 🎣 </title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-
-    <!-- Favicons -->
-    <link href="/yummy/assets/img/favicon.png" rel="icon">
-    <link href="/yummy/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -46,23 +42,28 @@
             <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="/yummy/assets/img/logo.png" alt=""> -->
-                <h1 class="sitename">Selayar</h1>
+                <h1 class="sitename">Perikanan Selayar 🐟</h1>
                 <span>.</span>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/" class="{{ request()->is('') ? 'active' : '' }}">Home<br></a></li>
-                    <li><a href="/products" class="{{ request()->is('products') ? 'active' : '' }}">All Produk</a></li>
-                    <li class="dropdown"><a href="#"><span>Pasar</span> <i
+                    <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Home<br></a></li>
+                    <li class="dropdown"><a href="#"
+                            class="{{ request()->is('pasar*') ? 'active' : '' }}"><span>Pasar</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach (\App\Models\Pasar::all() as $p)
-                                <li><a href="/pasar/{{ $p->id }}">{{ $p->nama }}</a></li>
+                                <li class="active"><a class=""
+                                        href="/pasar/{{ $p->id }}">{{ $p->nama }}</a></li>
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/products" class="{{ request()->is('products') ? 'active' : '' }}">All Produk</a></li>
+
+                    <li><a href="/admin/login" class="{{ request()->is('/admin/login') ? 'active' : '' }}">Login</a>
+                    </li>
+                    {{-- <li><a href="#contact">Contact</a></li> --}}
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

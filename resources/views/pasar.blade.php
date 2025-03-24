@@ -45,8 +45,8 @@
                                             src="/storage/{{ $product->gambar }}" class="menu-img img-fluid"
                                             alt=""></a>
                                     <h4>{{ $product->nama }} </h4>
-                                    <p class="ingredients">
-                                        {!! $product->deskripsi !!}
+                                    <p class="ingredients text-sm">
+                                        {!! str()->limit($product->deskripsi) !!}
                                     </p>
                                     <p class="price">
                                         Rp. {{ number_format($product->harga) }}
@@ -68,8 +68,10 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
-                <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+                <h2>Lokasi</h2>
+                <p><span>Ayo berkunjung ke pasar 🤩</span> <span class="description-title">Segar, murah, dan banyak
+                        pilihan!</span>
+                </p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -90,25 +92,7 @@
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-md-6">
-                        <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
-                            <i class="icon bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
-                            </div>
-                        </div>
-                    </div><!-- End Info Item -->
 
-                    <div class="col-md-6">
-                        <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
-                            <i class="icon bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
-                            </div>
-                        </div>
-                    </div><!-- End Info Item -->
 
                     <div class="col-md-6">
                         <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">

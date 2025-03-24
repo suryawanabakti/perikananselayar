@@ -29,6 +29,7 @@ class User extends Authenticatable
         'nohp',
         'email',
         'password',
+        'is_active',
     ];
 
     /**

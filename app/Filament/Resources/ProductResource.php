@@ -51,9 +51,9 @@ class ProductResource extends Resource
         return $table
             ->query($products)
             ->columns([
-                TextColumn::make('nama'),
-                TextColumn::make('harga'),
-                TextColumn::make('stok'),
+                TextColumn::make('nama')->searchable(),
+                TextColumn::make('harga')->searchable(),
+                TextColumn::make('stok')->searchable(),
                 TextColumn::make('deskripsi')->limit(30)->html(),
             ])
             ->filters([
