@@ -36,7 +36,7 @@ Route::get('/daftar-produk', function () {
             "id" => $data->id,
             "nama" => $data->nama,
             "kategori" => $data->kategori->nama,
-            "pasar" => $data->pasar,
+            "pasar" => $data->user->pasar,
             "harga" => (int) $data->harga,
             "rating" => 5,
             "satuan" => $data->satuan,
@@ -55,7 +55,7 @@ Route::get('/daftar-produk', function () {
 });
 
 Route::get('/produk/{produk}', function (Product $produk) {
-    return Inertia::render('detail-produk', ["produk" => $produk->load('pasar', 'user', 'kategori')]);
+    return Inertia::render('detail-produk', ["produk" => $produk->load('pasar', 'user.pasar', 'kategori')]);
 });
 
 Route::get('/tentang', function () {

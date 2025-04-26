@@ -7,6 +7,7 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Kategori;
 use App\Models\Pasar;
 use App\Models\Product;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -35,6 +36,7 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('user_id')->options(User::where('role', 'penjual')->pluck('name', 'id'))->visible(auth()->user()->role === 'admin'),
                 FileUpload::make('gambar')->directory('gambar')->image()->columnSpanFull(),
                 TextInput::make('nama')->required(),
                 Select::make('kategori_id')->options(Kategori::all()->pluck('nama', 'id'))->label('Kategori')->required(),
@@ -67,6 +69,7 @@ class ProductResource extends Resource
         return $table
             ->query($products)
             ->columns([
+                TextColumn::make('user.name')->searchable(),
                 TextColumn::make('nama')->searchable(),
                 TextColumn::make('harga')->searchable(),
                 TextColumn::make('stok')->searchable()->formatStateUsing(fn($record) => $record->stok === 0 ? "Tidak Tersedia" : "Tersedia"),

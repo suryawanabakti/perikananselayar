@@ -44,7 +44,7 @@ class UserResource extends Resource
                 Radio::make('is_active')->options([
                     0 => "Tidak",
                     1 => "iya"
-                ])->inline()
+                ])->inline()->required()
             ]);
     }
 

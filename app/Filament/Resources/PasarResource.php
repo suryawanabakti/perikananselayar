@@ -39,8 +39,8 @@ class PasarResource extends Resource
                 TextInput::make('nama')->columnSpanFull()->required(),
                 RichEditor::make('deskripsi')->columnSpanFull()->required(),
                 Textarea::make('alamat')->columnSpanFull()->required(),
-                TextInput::make('latitude')->columnSpan(1)->required()->hidden(),
-                TextInput::make('longitude')->columnSpan(1)->required()->hidden(),
+                TextInput::make('latitude')->columnSpan(1)->required(),
+                TextInput::make('longitude')->columnSpan(1)->required(),
             ]);
     }
 

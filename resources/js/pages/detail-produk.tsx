@@ -3,9 +3,10 @@
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import type { SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import { ChevronRight, Info, MapPin, MapPinCheck } from 'lucide-react';
+import { ChevronRight, Info, MapIcon, MapPin, MapPinCheck } from 'lucide-react';
 import { useState } from 'react';
 
 interface Ulasan {
@@ -89,8 +90,8 @@ export default function DetailProduk({ produk }: { produk: Produk }) {
                                 Daftar Produk
                             </Link>
                             <ChevronRight className="mx-1 h-4 w-4" />
-                            <Link href={`/pasar/${produk.pasar.id}`} className="hover:text-primary">
-                                {produk.pasar.nama}
+                            <Link href={`/pasar/${produk.user.pasar.id}`} className="hover:text-primary">
+                                {produk.user.pasar.nama}
                             </Link>
                             <ChevronRight className="mx-1 h-4 w-4" />
                             <span className="text-foreground font-medium">{produk.nama}</span>
@@ -300,11 +301,11 @@ export default function DetailProduk({ produk }: { produk: Produk }) {
                                             </span>
                                             <div className="flex items-center">
                                                 <a
-                                                    href={`/pasar/${produk.pasar.id}`}
+                                                    href={`/pasar/${produk.user.pasar.id}`}
                                                     className="hover:text-primary flex items-center hover:underline"
                                                 >
                                                     <span>
-                                                        {produk.pasar.nama}, {produk.pasar.alamat}
+                                                        {produk.user.pasar.nama}, {produk.user.pasar.alamat}
                                                     </span>
                                                 </a>
                                             </div>
@@ -350,9 +351,18 @@ export default function DetailProduk({ produk }: { produk: Produk }) {
                                     loading="lazy"
                                     allowFullScreen
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    src={`https://www.google.com/maps?q=${produk.pasar.latitude},${produk.pasar.longitude}&hl=en&z=14&output=embed`}
+                                    src={`https://www.google.com/maps?q=${produk.user.pasar.latitude},${produk.user.pasar.longitude}&hl=en&z=14&output=embed`}
                                     style={{ border: 0 }}
                                 ></iframe>
+                                 <Button size="sm" className="gap-2" asChild>
+                                                                <a
+                                                                    href={`https://www.google.com/maps?q=${produk.user.pasar.latitude},${produk.user.pasar.longitude}&hl=en&z=14`}
+                                                                    target="_blank"
+                                                                >
+                                                                    <MapIcon className="h-4 w-4" />
+                                                                    Buka di Maps
+                                                                </a>
+                                                            </Button>
                             </div>
                         </div>
 
@@ -374,7 +384,7 @@ export default function DetailProduk({ produk }: { produk: Produk }) {
             {/* Floating WhatsApp Button */}
             <div className="fixed right-6 bottom-6 z-50">
                 <a
-                    href={`https://wa.me/${produk.user?.nohp?.replace(/^0/, '62')}?text=Halo, saya tertarik dengan produk ${produk.nama} yang dijual di ${produk.pasar.nama}`}
+                    href={`https://wa.me/${produk.user?.nohp?.replace(/^0/, '62')}?text=Halo, saya tertarik dengan produk ${produk.nama} yang dijual di ${produk.user.pasar.nama}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center rounded-full bg-green-500 p-4 text-white shadow-lg transition-transform hover:scale-110 hover:bg-green-600"
